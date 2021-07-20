@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据结构-数组</title>
+</head>
+<body>
+  <ol>
+    <div>array是js的内置对象，提供了增删查改的api，不需要我们自己去实现</div>
+    <li>
+      <div>声明数组:</div>      
+      <div>
+        var arr = ['a', 'b']
+      </div>   
+    </li>
+    <li>
+      <div>查询:(通过索引访问)</div>      
+      <div>
+        arr[0]
+        arr[1]
+      </div>   
+    </li>
+    <li>
+      <div>遍历:</div>           
+      <div>
+        arr.forEach(function (item, index, array) {
+            console.log(item, index);
+        });
+      </div> 
+    </li>
+    <li>
+      <div>增加:</div>      
+      <div>
+        arr.push('c')  // 添加到末尾
+        arr.unshift('d') // 添加到头部
+      </div>   
+    </li>
+    <li>
+      <div>修改:</div>      
+      <div>
+        arr.splice(pos, 1, 'u') // 修改某个指定位置的元素
+      </div>   
+    </li>
+    <li>
+      <div>删除:</div>      
+      <div>
+        arr.pop()  // 删除末尾元素
+        arr.shift() // 删除头部元素
+        arr.splice(pos, 1) // 从指定位置删除某个元素
+      </div>   
+    </li>
+  </ol>
+</body>
+</html>
