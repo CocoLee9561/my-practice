@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据结构-链表</title>
+  </head>
+  <body>
+    <ol>
+      普通的链表常用的有以下几个方法：
+      <li>append 尾部添加一个节点</li>
+      <li>insert 插入一个节点</li>
+      <li>remove 删除一个节点</li>
+      <li>find 查找一个节点</li>
+      <li>toString 打印链表</li>
+      <li>isEmpty 是否为空链表</li>
+      <li>size 返回链表有几个节点</li>
+    </ol>
+    <script>
+      /**
+       * 一般的语言实现链表都需要指针来实现
+       * 而js的引用类型本来就是按值引用的
+       * 变量中保存的实质上是一个指向其对应对象的一个指针
+       */
+      class Node {
+        constructor(val) {
+          this.val = val;
+          this.next = null;
+        }
+      }
+      class LinkedList {
+        //传入和返回都是Node类型，第一个元素下标0
+        constructor(node) {
+          this.head = node;
+          this.size = 1;
+        }
+        isEmpty() {
+          return !this.size;
+        }
+        append(node) {
+          var lastNode = this.find(this.size - 1);
+          lastNode.next = node;
+          this.size++;
+        }
+        insert(index, node) {
+          //在哪个元素之前插入
+          var targetNode = this.find(index - 1);
+          node.next = targetNode.next;
+          targetNode.next = node;
+        }
+        remove(index) {
+          var preNode = this.find(index - 1);
+          var nextNode = this.find(index + 1);
+          preNode.next = nextNode;
+        }
+        find(index) {
+          if (index > this.size) {
+            console.log("越界");
+            return;
+          }
+          if (index === 0) {
+            return this.head;
+          }
+          var curNode = this.head;
+          while (index && curNode) {
+            index--;
+            curNode = curNode.next;
+          }
+          return curNode;
+        }
+        toString() {
+          var curNode = this.head;
+          var arr = [];
+          var i = 0;
+          while (curNode) {
+            arr[i++] = curNode.val;
+            curNode = curNode.next;
+          }
+          return arr.toString();
+        }
+      }
+      let list = new LinkedList(new Node("a"));
+      list.append(new Node("b"));
+      list.append(new Node("d"));
+      list.insert(2, new Node("c"));
+      list.remove(1);
+      console.log(list.toString());
+    </script>
+  </body>
+</html>

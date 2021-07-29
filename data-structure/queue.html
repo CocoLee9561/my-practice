@@ -1,12 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>数据结构-队列</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据结构-队列</title>
+  </head>
+  <body>
+    <ol>
+      普通的队列常用的有以下几个方法：
+      <li>enqueue 向队列尾部添加一个(或多个)新的项</li>
+      <li>dequeue 移除队列的第一(即排在队列最前面的)项，并返回被移除的元素</li>
+      <li>head 查找队列第一个元素</li>
+      <li>tail 查找队列最后一个元素</li>
+      <li>isEmpty 是否为空队列</li>
+      <li>size 返回队列内元素个数</li>
+    </ol>
+    <script>
+      class Queue {
+        constructor() {
+          this._queue = [];
+          this.size = 0;
+          this._size = 0;
+        }
+        // 队列内元素个数
+        get size() {
+          this._size = this._queue.length;
+          return this._size;
+        }
+        set size(value) {
+          this._size = value;
+        }
+        // 向队列尾部添加一个(或多个)新的项
+        enqueue(element) {
+          this._queue.push(element);
+        }
+        // 移除队列的第一(即排在队列最前面的)项，并返回被移除的元素
+        dequeue() {
+          return this._queue.shift();
+        }
+        // 查找队列第一个元素
+        head() {
+          return this._queue[0];
+        }
+        // 查找队列最后一个元素
+        tail() {
+          return this._queue[this._queue.length - 1];
+        }
+        // 是否为空队列
+        isEmpty() {
+          return !this._queue.length;
+        }
+        // 清空栈
+        clear() {
+          this._queue = [];
+        }
+      }
+
+      let q = new Queue();
+      q.enqueue("a");
+      q.enqueue("b");
+      q.enqueue("c");
+      console.log(q._queue, q.size);
+      console.log(q.head());
+      console.log(q.tail());
+      console.log(q.dequeue(), q._queue, q.size);
+      console.log(q.head());
+      console.log(q.tail());
+      console.log(q.isEmpty());
+      q.clear();
+      console.log(q._queue, q.size);
+    </script>
+  </body>
 </html>
