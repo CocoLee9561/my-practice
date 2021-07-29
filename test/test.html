@@ -6,6 +6,7 @@
     <title>Document</title>
     <script src="./js/problem1.js"></script>
     <script src="./js/problem2.js"></script>
+    <script src="./js/leecode.js"></script>
 </head>
 <body>
     <div>
@@ -19,6 +20,7 @@
       </ol>
     </div>
     <script>
+      console.log(addStrings())
       window.onload = () => {
           /**
            * @param {number[]} nums
@@ -37,15 +39,15 @@
               // }
               // return []
             // 第二种，利用hash
-              let hash = new Set()
-              for (let i = 0; i < nums.length; i++) {                
-                  if (hash.has(nums[i])) { // 当前元素在hash中, 直接返回结果                    
-                      return [hash[nums[i]], i]
-                  } else {
-                      hash.add(target - nums[i],i) // 保存当前元素期待的值和当前索引到hash
-                  }
-              }
-              return []
+              // let hash = new Set()
+              // for (let i = 0; i < nums.length; i++) {                
+              //     if (hash.has(nums[i])) { // 当前元素在hash中, 直接返回结果                    
+              //         return [hash[nums[i]], i]
+              //     } else {
+              //         hash.add(target - nums[i],i) // 保存当前元素期待的值和当前索引到hash
+              //     }
+              // }
+              // return []
           };
           
           // console.log(twoSum([3,2,4], 6))
@@ -60,25 +62,25 @@
 
           // return
 
-          var addTwoNumbers = function(l1, l2) {
-              let maxlen = Math.max(l1.length, l2.length)
-              let res = []
-              for(let i = 0; i < maxlen ; i++) {
-                  let a = l1[i] || 0
-                  let b = l2[i] || 0
-                  let ori = res[i] || 0
-                  let sum = a + b + ori
-                  if ( sum > 9) {
-                      res[i] = sum - 10
-                      res[i+1] = 1
-                  } else {
-                      res[i] = sum
-                  }
-              }
-              return res.reverse()
-          };
-          console.log(addTwoNumbers([2,4,3], [5,6,4]))
-          console.log(addTwoNumbers([9,9,9,9,9,9,9], [9,9,9,9]))
+          // var addTwoNumbers = function(l1, l2) {
+          //     let maxlen = Math.max(l1.length, l2.length)
+          //     let res = []
+          //     for(let i = 0; i < maxlen ; i++) {
+          //         let a = l1[i] || 0
+          //         let b = l2[i] || 0
+          //         let ori = res[i] || 0
+          //         let sum = a + b + ori
+          //         if ( sum > 9) {
+          //             res[i] = sum - 10
+          //             res[i+1] = 1
+          //         } else {
+          //             res[i] = sum
+          //         }
+          //     }
+          //     return res.reverse()
+          // };
+          // console.log(addTwoNumbers([2,4,3], [5,6,4]))
+          // console.log(addTwoNumbers([9,9,9,9,9,9,9], [9,9,9,9]))
         // console.log(findTreeNodeById(tree, '10'))        
         // console.log(findTreeNodeById1(tree, '10'))
       }
