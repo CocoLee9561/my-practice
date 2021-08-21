@@ -72,6 +72,17 @@ function findTreeNodeById(root, id) {
   }
 }
 
+
+          // function ListNode(val, next) {
+          //     this.val = (val===undefined ? 0 : val)
+          //     this.next = (next===undefined ? null : next)
+          // }
+          // let l1 = new Array( new ListNode(2,4), new ListNode(4,3), new ListNode(3) )
+          // console.log(l1)
+
+        // console.log(findTreeNodeById(tree, '10'))        
+        // console.log(findTreeNodeById1(tree, '10'))
+
 // export default {
 //   findTreeNodeById1,
 //   findTreeNodeById

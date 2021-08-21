@@ -1,0 +1,40 @@
+<!--
+ * @Author: lijing
+ * @Date: 2021-08-09 19:23:27
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent{
+      display: flex;
+      background-color: blue;
+      width: 200px;
+      height: 100px;
+    }
+    .child{
+      /* 优先展示此元素，当没有其他兄弟节点的时候，它的宽度填满父元素；
+      当有其他兄弟节点的时候，这里设置的宽度为它展示的最小宽度；
+      当不给他设置宽度时，它的宽度为内容宽度 */
+      flex: 1;
+      width: 50px;
+      background-color: pink;
+    }
+    .child1{
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child1"></div>
+    <div class="child">sgddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+   
+  </div>
+</body>
+</html>
