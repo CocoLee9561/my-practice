@@ -181,3 +181,7 @@ var compareVersion = function(version1 = "0.1", version2 = "1.1") {
   }
   return 0
 };
+
+export default {
+  compareVersion: compareVersion
+}

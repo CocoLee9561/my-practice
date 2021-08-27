@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>闭包</title>
+</head>
+<body>
+  <script>
+    // for(var i = 1;i<=5; i++) {
+    //   setTimeout(function timer() {
+    //     console.log(i) // 6
+    //   }, i*1000)
+    // }
+    // for(var i = 1;i<=5; i++) {
+    //   (function() {
+    //       setTimeout(function timer() {
+    //         console.log(i) // 6
+    //       }, i*1000)
+    //   })()
+    // }
+    // for(var i = 1;i<=5; i++) {
+    //   // IIFE: Immediately Invoked Function Expression 立即执行函数表达式
+    //   (function() {
+    //     var j = i
+    //       setTimeout(function timer() {
+    //         console.log(j) // 1,2,3,4,5
+    //       }, j*1000)
+    //   })()
+    // }
+    // for(var i = 1;i<=5; i++) {
+    //   // IIFE: Immediately Invoked Function Expression 立即执行函数表达式
+    //   (function(j) {
+    //       setTimeout(function timer() {
+    //         console.log(j) // 1,2,3,4,5
+    //       }, j*1000)
+    //   })(i)
+    // }
+    // console.log(i)
+    // for(var i = 1;i<=5; i++) {
+    //   // 用let劫持块作用域（在let和const之前，js是只有try..catch(){}和with(){}块作用域的）
+    //   let j = i
+    //   setTimeout(function timer() {
+    //     console.log(j) 
+    //   }, j*1000)
+    // }
+    for(let i = 1;i<=5; i++) {
+      // 用let劫持块作用域（在let和const之前，js是只有try..catch(){}和with(){}块作用域的）
+      setTimeout(function timer() {
+        console.log(i) 
+      }, i*1000)
+    }
+  </script>
+</body>
+</html>
