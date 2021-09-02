@@ -16,10 +16,54 @@
     最后一次执行
   </div>
   <div>
+    <input type="text" placeholder="without debounce" oninput="onInputChange(event)"/>
+    <input type="text" id="ipt" placeholder="with debounce" />
+  </div>
+  <script>
+    // 防抖
+    function debounce(fn, delay) {
+      let timer = null
+      return function() {
+        let that = this, _args = arguments
+        timer && clearTimeout(timer)
+        timer = setTimeout(() => fn.apply(that, _args), delay)
+      }      
+    }
+    function onInputChange(e) {
+      console.log(e.target.value)
+    }
+    document.getElementById('ipt').oninput = debounce(onInputChange, 1000)
+  </script>
+
+  <div>
     节流：适用于 resize，scroll 
     throttle：（首节流-时间戳，尾节流-定时器，时间戳+定时器）
     当持续触发事件时，保证一段时间内只调用一次事件处理函数。
     固定间隔时间执行
   </div>
+
+  <script>
+    function throttle(handler, gap) {
+      let timer = null
+      let start = new Date().getTime()
+      return function() {
+        if (new Date().getTime() - start < gap) {
+          clearInterval(timer)
+          start = new Date.getTime()
+        } else {
+          timer = setInterval(() => {
+            handler.apply(this)
+            clearInterval(timer)
+          }, gap)
+        }
+      }
+    }
+    function onResizeHandler() {
+      console.log(window.document.body.clientWidth)
+    }
+    // window.onresize = onResizeHandler
+    window.onresize = throttle(onResizeHandler, 500)
+
+  </script>
 </body>
 </html>
