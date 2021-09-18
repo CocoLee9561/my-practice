@@ -27,32 +27,6 @@ var findSecondMinimumValue = function(root) {
  * @param {string} num2
  * @return {string}
  */
-//  var addStrings = function(num1 = '456', num2='77') {
-//   let len1 = num1.length
-//   let len2 = num2.length
-//   let arr1 = num1.split('')
-//   let arr2 = num2.split('')
-//   let flag = false
-//   let ans = len2 > len1 ? arr2 : arr1
-//   for(let i = 1; i<= Math.max(len1,len2); i++) {
-//       if (flag) {
-//           ans[ans.length - i] = parseInt(ans[ans.length - i]) + 1
-//           flag = false
-//       }
-//       const n1 = parseInt(arr1[len1 - i]) || 0
-//       const n2 = parseInt(arr2[len2 - i]) || 0
-//       let cur =  n1 + n2
-//       if (cur > 10) {
-//           // 需要进位
-//           flag = true
-//           ans[ans.length - i] = cur % 10
-//       } else {
-//           ans[ans.length - i] = cur
-//       }
-//   }
-//   return ans.join('')
-// };
-
 var addStrings = function(num1 = '456', num2='77') {
   let arr1 = num1.length > num2.length ? num1.split('') : num2.split('')
   let arr2 = num1.length > num2.length ? num2.split('') : num1.split('') 
@@ -182,6 +156,29 @@ var compareVersion = function(version1 = "0.1", version2 = "1.1") {
   return 0
 };
 
-export default {
-  compareVersion: compareVersion
-}
+/**
+ * 46. 全排列
+ * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+ var permute = function(nums) {
+  const res = [], path = []
+  backtracking(nums, nums.length, [])
+  return res
+
+  function backtracking(arr, len, used) {
+      if (path.length === len) {
+          res.push(Array.from(path))
+          return res
+      }
+      for (let i = 0; i < len; i++) {
+          if (used[i]) continue;
+          path.push(arr[i])
+          used[i] = true
+          backtracking(arr, len, used)
+          path.pop()
+          used[i] = false
+      }
+  }
+};
