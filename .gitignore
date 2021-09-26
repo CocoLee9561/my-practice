@@ -1,2 +1,7 @@
 mini-vue3/node_modules
 mini-vue3/package-lock.json
+mini-vue2/node_modules
+mini-vue2/dist
+mini-vue2/package-lock.json
+diff/node_modules
+diff/package-lock.json
