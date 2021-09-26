@@ -1,0 +1,40 @@
+<!--
+ * @Author: lijing
+ * @Date: 2021-08-30 16:46:06
+ * @Description: 用setTimeout和promise 模拟setInterval
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>    
+    function mySetInterval(fn, time) {
+      function interval() {
+        fn()
+        setTimeout(interval, time)
+      }
+      setTimeout(interval, time)
+      // fn()
+      // setTimeout(function () {
+      //   mySetInterval(fn, time)
+      // }, time)
+    }
+
+    function clearMyInterval(timer) {
+      timer && clearTimeout(timer)
+    }
+
+    let id = mySetInterval(() => {
+      console.log('111')
+    }, 1000)
+    setTimeout(function() {
+      clearMyInterval(id)
+    }, 2000)
+  </script>
+</body>
+</html>
