@@ -43,18 +43,58 @@
   </div>
 
   <script>
-    function throttle(handler, gap) {
-      let timer = null
-      let start = new Date().getTime()
-      return function() {
-        if (new Date().getTime() - start < gap) {
-          clearInterval(timer)
-          start = new Date.getTime()
-        } else {
-          timer = setInterval(() => {
-            handler.apply(this)
-            clearInterval(timer)
-          }, gap)
+    function throttle(handler, gap) {  
+      // 第一次事件肯定触发，最后一次不会触发
+      // let pre = 0;
+      // return function (...args) {
+      //   if (Date.now() - pre > gap) {
+      //     pre = Date.now();
+      //     handler.apply(this, args);
+      //   }
+      // }
+
+      // 第一次事件不会触发，最后一次一定触发
+      // let timer = null
+      // return function (...args) {
+      //   if (!timer) {
+      //     timer = setTimeout(() => {
+      //       handler.apply(this, args)
+      //       timer = null
+      //     }, gap)
+      //   }
+      // }
+
+      // 第一次和最后一次都会触发
+      // let pre = 0,timer = null
+      // return function(...args) {
+      //   if (Date.now() - pre > gap) {
+      //     // 时间超过了
+      //     clearTimeout(timer)
+      //     timer = null
+      //     pre = Date.now()
+      //     handler.apply(this, args)
+      //   } else if (!timer) {
+      //     timer = setTimeout(() => {
+      //       handler.apply(this, args)
+      //       timer = null
+      //     }, gap)
+      //   }
+      // }
+
+      let pre = 0;
+      let timer = null;
+      return function (...args) {
+        if (Date.now() - pre > gap) {
+          clearTimeout(timer);
+          timer = null;
+          pre = Date.now();
+          handler.apply(this, args);
+        } else if (!timer) {
+          timer = setTimeout(() => {
+            handler.apply(this, args);
+            clearTimeout(timer);
+            timer = null;
+          }, gap);
         }
       }
     }
@@ -62,7 +102,7 @@
       console.log(window.document.body.clientWidth)
     }
     // window.onresize = onResizeHandler
-    window.onresize = throttle(onResizeHandler, 500)
+    window.onresize = throttle(onResizeHandler, 3000)
 
   </script>
 </body>
