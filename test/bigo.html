@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bigo 的题</title>
+</head>
+<body>
+    <div>
+        1、 实现iterator功能，使以下代码能按顺序打印0~4​
+        // TODO:
+
+        for (i of 5) {
+        console.log(i);
+        }
+    </div>    
+        
+
+    <div>
+        2、 将以下数据转为树形结构（通过pid组织关系）：
+        <script>
+            const list = [
+                { id: 1, name: "1" },
+                { id: 2, name: "1-1", pid: 1 },
+                { id: 3, name: "1-1-1", pid: 2 },
+                { id: 4, name: "1-2", pid: 1 },
+            ];
+            function list2Tree (list) {
+                // TODO:
+                let tree = {}
+                for (let i = 0; i < list.length; i++) {
+                    let item = list[i]
+                    item.children = []
+                    item.pid = item.pid || 0
+                    if(!item.pid) {
+                        tree = list[i]          
+                    } else {
+                        const deep = item.pid - tree.pid
+                        if (deep === 1) {
+                            tree.children.push(item)
+                        } else {
+                            tree.children[0].children.push(item)
+                        }          
+                    }
+                }
+                return tree
+            }
+
+            console.log(list2Tree(list));
+        </script>
+    </div>
+
+    <div>
+        3、 实现发布订阅EventEmitter​：
+        <script>
+            class EventEmitter {
+                // TODO:
+                constructor() {
+                    this.events = []
+                }
+                on(eventName, callback) {
+                    this.events.push({name: eventName,cb: callback})
+                }
+                once(eventName, callback) {
+                    this.events.push({name: eventName,cb: callback,once:true})
+                }
+                emit(eventName, msg) {
+                    const e = this.events.find(event => event.name === eventName)                
+                    e && e.cb(msg)
+                    
+                    if(e && e.once) {
+                        off(eventName)
+                    }
+                }
+                off(eventName) {
+                    for(let i = 0; i< this.events.length; i++) {
+                        if(this.events[i].name === eventName) {
+                            this.events.splice(i,0)
+                            break
+                        }
+                    }
+                }
+            }
+        
+            const emitter = new EventEmitter();
+        
+            emitter.on("message", (e) => console.log("message: ", e));
+            emitter.once("message", (e) => console.log("once message: ", e));
+        
+            emitter.emit("message", "BIGO");
+            emitter.off("message");
+        </script>
+    </div>
+
+   
+
+
+
+</body>
+</html>
