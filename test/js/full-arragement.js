@@ -1,3 +1,4 @@
+// 全排列
 function arragement(nums, current) {
         console.log('after: ', current)
     if (current.length === nums.length) {

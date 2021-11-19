@@ -27,21 +27,17 @@
             ];
             function list2Tree (list) {
                 // TODO:
-                let tree = {}
-                for (let i = 0; i < list.length; i++) {
-                    let item = list[i]
-                    item.children = []
-                    item.pid = item.pid || 0
-                    if(!item.pid) {
-                        tree = list[i]          
-                    } else {
-                        const deep = item.pid - tree.pid
-                        if (deep === 1) {
-                            tree.children.push(item)
-                        } else {
-                            tree.children[0].children.push(item)
-                        }          
-                    }
+                let tree = list.find(item => !item.pid)
+
+                buildTree(tree)
+
+                function buildTree(curNode) {
+                  const childs = list.filter(item => item.pid === curNode.id)
+                  if (!childs.length) return
+                  curNode.childs = childs
+                  curNode.childs.forEach(child => {
+                    buildTree(child)
+                  })
                 }
                 return tree
             }
@@ -56,9 +52,10 @@
             class EventEmitter {
                 // TODO:
                 constructor() {
-                    this.events = []
+                    this.events = {}                    
                 }
                 on(eventName, callback) {
+                  this.events[eventName]
                     this.events.push({name: eventName,cb: callback})
                 }
                 once(eventName, callback) {
@@ -91,10 +88,5 @@
             emitter.off("message");
         </script>
     </div>
-
-   
-
-
-
 </body>
 </html>
